@@ -1,0 +1,77 @@
+{
+  "expo": {
+    "name": "Naturals Salon",
+    "slug": "naturals-salon",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "automatic",
+    "scheme": "naturals",
+    "icon": "./assets/android/icon.png",
+    "android": {
+      "package": "in.naturals.salon",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android/adaptive-icon-foreground.png",
+        "backgroundColor": "#59276F",
+        "monochromeImage": "./assets/android/adaptive-icon-monochrome.png"
+      },
+      "softwareKeyboardLayoutMode": "resize",
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "allowBackup": true
+    },
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#FAF7F3"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "in.naturals.salon",
+      "icon": "./assets/android/icon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Naturals Salon uses your photos so administrators can upload salon, service and campaign images.",
+          "cameraPermission": "Naturals Salon uses the camera so administrators can photograph salon, service and campaign images.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/android/splash-icon.png",
+          "imageWidth": 280,
+          "resizeMode": "contain",
+          "backgroundColor": "#FAF7F3",
+          "dark": {
+            "image": "./assets/android/splash-icon-dark.png",
+            "backgroundColor": "#0E0E12"
+          }
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ],
+      "expo-font"
+    ],
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/logo.png",
+      "name": "Naturals Salon & Wellness",
+      "shortName": "Naturals",
+      "lang": "en",
+      "themeColor": "#5B2A83",
+      "backgroundColor": "#FAF7F3",
+      "display": "standalone",
+      "barStyle": "black-translucent"
+    }
+  }
+}
