@@ -1,26 +1,26 @@
 import { Image } from "react-native";
 
-const salonLight = Image.resolveAssetSource(require("../assets/demo/salon-light.png")).uri;
-const salonWarm = Image.resolveAssetSource(require("../assets/demo/salon-warm.png")).uri;
-const salonDetail = Image.resolveAssetSource(require("../assets/demo/salon-detail.png")).uri;
-const womenHero = Image.resolveAssetSource(require("../assets/demo/women-hero.png")).uri;
-const womenHair = Image.resolveAssetSource(require("../assets/demo/women-hair.png")).uri;
-const womenHairAlt = Image.resolveAssetSource(require("../assets/demo/women-hair-alt.png")).uri;
-const skincare = Image.resolveAssetSource(require("../assets/demo/skincare.png")).uri;
-const skincareAlt = Image.resolveAssetSource(require("../assets/demo/skincare-alt.png")).uri;
-const makeup = Image.resolveAssetSource(require("../assets/demo/makeup.png")).uri;
-const bridal = Image.resolveAssetSource(require("../assets/demo/bridal.png")).uri;
-const spa = Image.resolveAssetSource(require("../assets/demo/spa.png")).uri;
-const spaDetail = Image.resolveAssetSource(require("../assets/demo/spa-detail.png")).uri;
-const menHero = Image.resolveAssetSource(require("../assets/demo/men-hero.png")).uri;
-const barberShop = Image.resolveAssetSource(require("../assets/demo/barber-shop.png")).uri;
-const menCut = Image.resolveAssetSource(require("../assets/demo/men-cut.png")).uri;
-const menBeard = Image.resolveAssetSource(require("../assets/demo/men-beard.png")).uri;
-const menPortrait = Image.resolveAssetSource(require("../assets/demo/men-portrait.png")).uri;
-const barberChair = Image.resolveAssetSource(require("../assets/demo/barber-chair.png")).uri;
-const menDetail = Image.resolveAssetSource(require("../assets/demo/men-detail.png")).uri;
-const hairColour = Image.resolveAssetSource(require("../assets/demo/hair-colour.png")).uri;
-const placeholder = Image.resolveAssetSource(require("../assets/demo/placeholder.png")).uri;
+const salonLight = Image.resolveAssetSource(require("../../assets/demo/salon-light.png")).uri;
+const salonWarm = Image.resolveAssetSource(require("../../assets/demo/salon-warm.png")).uri;
+const salonDetail = Image.resolveAssetSource(require("../../assets/demo/salon-detail.png")).uri;
+const womenHero = Image.resolveAssetSource(require("../../assets/demo/women-hero.png")).uri;
+const womenHair = Image.resolveAssetSource(require("../../assets/demo/women-hair.png")).uri;
+const womenHairAlt = Image.resolveAssetSource(require("../../assets/demo/women-hair-alt.png")).uri;
+const skincare = Image.resolveAssetSource(require("../../assets/demo/skincare.png")).uri;
+const skincareAlt = Image.resolveAssetSource(require("../../assets/demo/skincare-alt.png")).uri;
+const makeup = Image.resolveAssetSource(require("../../assets/demo/makeup.png")).uri;
+const bridal = Image.resolveAssetSource(require("../../assets/demo/bridal.png")).uri;
+const spa = Image.resolveAssetSource(require("../../assets/demo/spa.png")).uri;
+const spaDetail = Image.resolveAssetSource(require("../../assets/demo/spa-detail.png")).uri;
+const menHero = Image.resolveAssetSource(require("../../assets/demo/men-hero.png")).uri;
+const barberShop = Image.resolveAssetSource(require("../../assets/demo/barber-shop.png")).uri;
+const menCut = Image.resolveAssetSource(require("../../assets/demo/men-cut.png")).uri;
+const menBeard = Image.resolveAssetSource(require("../../assets/demo/men-beard.png")).uri;
+const menPortrait = Image.resolveAssetSource(require("../../assets/demo/men-portrait.png")).uri;
+const barberChair = Image.resolveAssetSource(require("../../assets/demo/barber-chair.png")).uri;
+const menDetail = Image.resolveAssetSource(require("../../assets/demo/men-detail.png")).uri;
+const hairColour = Image.resolveAssetSource(require("../../assets/demo/hair-colour.png")).uri;
+const placeholder = Image.resolveAssetSource(require("../../assets/demo/placeholder.png")).uri;
 
 export const DEMO_IMAGES = {
   salonLight,
