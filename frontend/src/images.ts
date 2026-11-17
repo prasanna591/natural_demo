@@ -1,9 +1,9 @@
 import type { Section } from "./theme";
 import type { Salon, Service } from "./api";
-import { buildImageUrl } from "./api";
+import { buildImageUrl } from "./demo/assets";
 
 const photo = (id: string, width = 1000) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
+  buildImageUrl(`https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`);
 
 const IMG = {
   salonLight: "photo-1560066984-138dadb4c035",

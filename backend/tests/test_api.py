@@ -358,6 +358,109 @@ def test_offer_is_validated_by_backend(client: TestClient):
     assert rejected.status_code == 400
 
 
+def customer_login(client: TestClient, suffix: str) -> tuple[str, int]:
+    response = client.post(
+        "/auth/register",
+        json={
+            "name": f"Review Customer {suffix}",
+            "email": f"review-customer-{suffix}@example.com",
+            "password": "Secure-test-password-2026",
+        },
+    )
+    assert response.status_code == 201, response.text
+    data = response.json()
+    return data["access_token"], data["user"]["id"]
+
+
+def test_review_crud_admin_moderation_and_bypass(client: TestClient):
+    headers = admin_headers(client)
+    salon_id, service_id = demo_ids(client)
+
+    token, _ = customer_login(client, "crud")
+
+    # Create a review.
+    created = client.post(
+        "/reviews",
+        json={"salon_id": salon_id, "service_id": service_id, "rating": 5, "title": "Great", "comment": "Loved it."},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert created.status_code == 201, created.text
+    review = created.json()
+    assert review["rating"] == 5
+    assert review["is_active"] is True
+
+    # Re-posting for the same salon updates the existing review instead of duplicating.
+    again = client.post(
+        "/reviews",
+        json={"salon_id": salon_id, "service_id": service_id, "rating": 3, "title": "OK", "comment": "Fine."},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert again.status_code == 201, again.text
+    assert again.json()["rating"] == 3
+    assert again.json()["id"] == review["id"]
+
+    # Customer can edit rating/title/comment.
+    updated = client.patch(
+        f"/reviews/{review['id']}",
+        json={"rating": 4, "title": "Better", "comment": "Good."},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert updated.status_code == 200, updated.text
+    assert updated.json()["rating"] == 4
+
+    # Customer PATCH must not be able to flip is_active (moderation bypass).
+    bypass = client.patch(
+        f"/reviews/{review['id']}",
+        json={"title": "Still four", "is_active": False},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert bypass.status_code == 200, bypass.text
+    assert bypass.json()["title"] == "Still four"
+    assert bypass.json()["is_active"] is True
+
+    # Admin moderation toggle works with {is_active} only (previously 422).
+    hidden = client.patch(
+        f"/admin/reviews/{review['id']}",
+        json={"is_active": False},
+        headers=headers,
+    )
+    assert hidden.status_code == 200, hidden.text
+    assert hidden.json()["is_active"] is False
+
+    approved = client.patch(
+        f"/admin/reviews/{review['id']}",
+        json={"is_active": True},
+        headers=headers,
+    )
+    assert approved.status_code == 200, approved.text
+    assert approved.json()["is_active"] is True
+
+    # A hidden review cannot be re-submitted via POST.
+    client.patch(f"/admin/reviews/{review['id']}", json={"is_active": False}, headers=headers)
+    resubmit = client.post(
+        "/reviews",
+        json={"salon_id": salon_id, "service_id": service_id, "rating": 5, "title": "Again", "comment": "Re-submit."},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert resubmit.status_code == 409, resubmit.text
+    assert "hidden" in resubmit.json()["detail"].lower()
+
+    # Customer PATCH is_active on a hidden review must not reactivate it.
+    reactivate = client.patch(
+        f"/reviews/{review['id']}",
+        json={"comment": "Still hidden", "is_active": True},
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    assert reactivate.status_code == 200, reactivate.text
+    assert reactivate.json()["comment"] == "Still hidden"
+    assert reactivate.json()["is_active"] is False
+
+    # Admin can finally approve and the customer can delete their own review.
+    client.patch(f"/admin/reviews/{review['id']}", json={"is_active": True}, headers=headers)
+    deleted = client.delete(f"/reviews/{review['id']}", headers={"Authorization": f"Bearer {token}"})
+    assert deleted.status_code == 204, deleted.text
+
+
 def admin_headers(client: TestClient) -> dict[str, str]:
     login = client.post(
         "/auth/admin-login",

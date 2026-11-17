@@ -1399,6 +1399,7 @@ function AppContent() {
           current.map((review) => (review.id === reviewId ? updated : review)),
         );
         setUserReview(updated);
+        await loadReviewSummary(updated.salon_id);
         notify("Review updated.");
       } catch (reason) {
         setError(messageOf(reason, "Could not update your review."));
@@ -1406,7 +1407,7 @@ function AppContent() {
         setBusy(false);
       }
     },
-    [token, updateReviewApi],
+    [token, updateReviewApi, loadReviewSummary],
   );
 
   const deleteReview = useCallback(
@@ -1709,15 +1710,12 @@ function AppContent() {
     if (!doc) return;
     const id = "naturals-web-fonts";
     if (doc.getElementById(id)) return;
-    const preconnect = doc.createElement("link");
-    preconnect.rel = "preconnect";
-    preconnect.href = "https://fonts.googleapis.com";
-    const stylesheet = doc.createElement("link");
-    stylesheet.id = id;
-    stylesheet.rel = "stylesheet";
-    stylesheet.href =
-      "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap";
-    doc.head.append(preconnect, stylesheet);
+    const style = doc.createElement("style");
+    style.id = id;
+    style.textContent = `
+      html, body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+    `;
+    doc.head.appendChild(style);
   }, []);
 
   useEffect(() => {

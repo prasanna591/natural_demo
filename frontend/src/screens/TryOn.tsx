@@ -13,6 +13,7 @@ import {
 import { useNaturals } from "../context";
 import { pickImage } from "../imagePicker";
 import { fonts, radius } from "../theme";
+import { buildImageUrl } from "../demo/assets";
 import { Body, Button, Display, Entrance, Eyebrow, GlassPanel, PulseDot, RowSkeleton, TiltCard, AnimatedPressable } from "../ui";
 
 /**
@@ -38,7 +39,7 @@ type Look = {
 };
 
 const unsplash = (id: string, width = 700) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
+  buildImageUrl(`https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`);
 
 const IMG = {
   womenHair: unsplash("photo-1521590832167-7bcbfaa6381f", 700),

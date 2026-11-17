@@ -1,4 +1,5 @@
 import { Platform } from "react-native";
+import { demoRequest } from "./demo/router";
 
 function normalise(value: string | undefined): string {
   return (value ?? "").trim().replace(/\/$/, "");
@@ -17,6 +18,10 @@ const fallbackUrl = Platform.OS === "android" ? "http://10.0.2.2:8000" : "http:/
 
 export const API_URL = (Platform.OS === "android" ? androidConfigured : sharedUrl) || fallbackUrl;
 
+/** When set to "online" the real fetch transport is used. Anything else (default)
+ * routes every request through the in-app offline demo layer. */
+export const DEMO_MODE = process.env.EXPO_PUBLIC_DEMO_MODE !== "online";
+
 /** Error thrown for non-2xx API responses. Carries the HTTP status so callers
  * can distinguish an invalid/expired session (401/403) from a network outage. */
 export class ApiError extends Error {
@@ -30,6 +35,15 @@ export class ApiError extends Error {
 }
 
 export function request<T>(path: string, token: string | null, init: RequestInit = {}): Promise<T> {
+  if (DEMO_MODE) {
+    const method = (init.method || "GET").toUpperCase();
+    try {
+      return Promise.resolve(demoRequest(method, path, token, init) as unknown as T);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   const isFormData = typeof FormData !== "undefined" && init.body instanceof FormData;
   const headers: Record<string, string> = {
     ...(isFormData ? {} : { "Content-Type": "application/json" }),

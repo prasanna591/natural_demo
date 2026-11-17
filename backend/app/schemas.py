@@ -419,8 +419,14 @@ class ReviewCreate(ReviewBase):
     service_id: int | None = None
 
 
-class ReviewUpdate(ReviewBase):
-    is_active: bool | None = None
+class ReviewUpdate(BaseModel):
+    rating: int | None = Field(default=None, ge=1, le=5)
+    title: str | None = Field(default=None, max_length=160)
+    comment: str | None = Field(default=None, max_length=1000)
+
+
+class ReviewModerationUpdate(BaseModel):
+    is_active: bool
 
 
 class ReviewOut(BaseModel):

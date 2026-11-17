@@ -15,6 +15,16 @@ from .models import User
 
 bearer = HTTPBearer(auto_error=False)
 
+_DEV_JWT_SECRET = "development-secret-change-before-deploy"
+
+
+def _ensure_production_jwt_secret() -> None:
+    if os.getenv("ENV") == "production" and os.getenv("JWT_SECRET", _DEV_JWT_SECRET) == _DEV_JWT_SECRET:
+        raise RuntimeError("JWT_SECRET must be set to a non-default value when ENV=production.")
+
+
+_ensure_production_jwt_secret()
+
 
 def has_admin_access(user: User) -> bool:
     return user.role in {"admin", "developer"}
@@ -47,7 +57,7 @@ def create_access_token(user: User) -> str:
         }
     )
     signing_input = f"{header}.{payload}".encode()
-    secret = os.getenv("JWT_SECRET", "development-secret-change-before-deploy").encode()
+    secret = os.getenv("JWT_SECRET", _DEV_JWT_SECRET).encode()
     signature = base64.urlsafe_b64encode(
         hmac.new(secret, signing_input, hashlib.sha256).digest()
     ).rstrip(b"=").decode()

@@ -1,0 +1,1785 @@
+{
+  "/auth/admin-login": {
+    "status": 200,
+    "body": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwicm9sZSI6ImRldmVsb3BlciIsImV4cCI6MTc5NDk5Mzc4NX0.EwdgAorwl2ei6D2eVB-kAGgFdRPXdOKAhqdGZZy31jg",
+      "token_type": "bearer",
+      "user": {
+        "id": 2,
+        "name": "Naturals Developer",
+        "email": "developer@naturals.example",
+        "role": "developer"
+      }
+    }
+  },
+  "/auth/register": {
+    "status": 201,
+    "body": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwicm9sZSI6ImN1c3RvbWVyIiwiZXhwIjoxNzk0OTkzNzg1fQ.c2kRp8_udQbygtmEGx4s76ULpTedg2ytN8e9eMIJN8w",
+      "token_type": "bearer",
+      "user": {
+        "id": 3,
+        "name": "Demo Customer",
+        "email": "demo@naturals.example",
+        "role": "customer"
+      }
+    }
+  },
+  "/auth/login": {
+    "status": 200,
+    "body": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwicm9sZSI6ImN1c3RvbWVyIiwiZXhwIjoxNzk0OTkzNzg1fQ.c2kRp8_udQbygtmEGx4s76ULpTedg2ytN8e9eMIJN8w",
+      "token_type": "bearer",
+      "user": {
+        "id": 3,
+        "name": "Demo Customer",
+        "email": "demo@naturals.example",
+        "role": "customer"
+      }
+    }
+  },
+  "/me": {
+    "status": 200,
+    "body": {
+      "id": 3,
+      "name": "Demo Customer",
+      "email": "demo@naturals.example",
+      "role": "customer"
+    }
+  },
+  "/salons": {
+    "status": 200,
+    "body": [
+      {
+        "id": 2,
+        "name": "Naturals Demo Studio \u2014 Indiranagar",
+        "city": "Bengaluru",
+        "address": "Demo address \u2014 update before launch",
+        "phone": "+91 00000 00000",
+        "opens_at": "10:00",
+        "closes_at": "21:00",
+        "image_url": null,
+        "is_active": true,
+        "is_demo": true,
+        "average_rating": null,
+        "review_count": 0
+      },
+      {
+        "id": 1,
+        "name": "Naturals Demo Studio \u2014 Adyar",
+        "city": "Chennai",
+        "address": "Demo address \u2014 update before launch",
+        "phone": "+91 00000 00000",
+        "opens_at": "10:00",
+        "closes_at": "21:00",
+        "image_url": null,
+        "is_active": true,
+        "is_demo": true,
+        "average_rating": null,
+        "review_count": 0
+      }
+    ]
+  },
+  "/services": {
+    "status": 200,
+    "body": [
+      {
+        "id": 2,
+        "category_id": 1,
+        "category": "Hair",
+        "name": "Nourishing hair spa",
+        "description": "A relaxing wash and conditioning ritual for soft, refreshed hair.",
+        "duration_minutes": 60,
+        "price": "1499.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 1,
+        "category_id": 1,
+        "category": "Hair",
+        "name": "Signature haircut",
+        "description": "A consultation-led cut and finish tailored to your style.",
+        "duration_minutes": 45,
+        "price": "699.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 3,
+        "category_id": 2,
+        "category": "Skin",
+        "name": "Radiance facial",
+        "description": "A cleansing and hydrating facial experience.",
+        "duration_minutes": 60,
+        "price": "1299.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 4,
+        "category_id": 3,
+        "category": "Body",
+        "name": "Relaxing body massage",
+        "description": "A restorative massage designed to help you unwind.",
+        "duration_minutes": 60,
+        "price": "1999.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 5,
+        "category_id": 4,
+        "category": "Bridal",
+        "name": "Bridal beauty consultation",
+        "description": "A one-to-one consultation to discuss your wedding-day look.",
+        "duration_minutes": 45,
+        "price": "0.00",
+        "image_url": null,
+        "audience": "Women",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 6,
+        "category_id": 5,
+        "category": "Men's grooming",
+        "name": "Classic men's grooming",
+        "description": "A tailored haircut and grooming finish.",
+        "duration_minutes": 30,
+        "price": "499.00",
+        "image_url": null,
+        "audience": "Men",
+        "is_active": true,
+        "is_demo": true
+      }
+    ]
+  },
+  "/categories": {
+    "status": 200,
+    "body": [
+      {
+        "id": 3,
+        "name": "Body",
+        "slug": "body"
+      },
+      {
+        "id": 4,
+        "name": "Bridal",
+        "slug": "bridal"
+      },
+      {
+        "id": 1,
+        "name": "Hair",
+        "slug": "hair"
+      },
+      {
+        "id": 5,
+        "name": "Men's grooming",
+        "slug": "mens-grooming"
+      },
+      {
+        "id": 2,
+        "name": "Skin",
+        "slug": "skin"
+      }
+    ]
+  },
+  "/offers": {
+    "status": 200,
+    "body": [
+      {
+        "code": "WELCOME10",
+        "title": "Welcome offer",
+        "description": "10% off one demo booking. Development offer, not an official Naturals promotion.",
+        "discount_percent": 10,
+        "is_demo": true
+      }
+    ]
+  },
+  "/app/settings": {
+    "status": 200,
+    "body": {
+      "promo_banner_enabled": false,
+      "promo_banner_title": "Your next ritual, made special",
+      "promo_banner_message": "Browse treatments and find a time that works for you.",
+      "promo_banner_cta": "Explore offers"
+    }
+  },
+  "/public/content": {
+    "status": 200,
+    "body": {
+      "home.categories.subtitle.men": "Hair, beard-friendly grooming, skin and body \u2014 each with its own set of rituals.",
+      "home.categories.subtitle.women": "Start with a category, then narrow the services to exactly what you need.",
+      "home.categories.title.men": "Choose your discipline",
+      "home.categories.title.women": "Find your ritual",
+      "home.cta.copy.men": "Pick a discipline, choose a real open slot and let the team handle the rest.",
+      "home.cta.copy.women": "Choose a service, pick a real available time and let the salon team take it from there.",
+      "home.cta.title.men": "Take the chair.",
+      "home.cta.title.women": "Your chair is waiting.",
+      "home.edit.subtitle.men": "Signature disciplines chosen from the live service catalogue. Durations and prices are pulled from the salon API.",
+      "home.edit.subtitle.women": "Signature rituals chosen from the live service catalogue. Every price and duration below comes from the salon API.",
+      "home.edit.title.men": "The grooming edit",
+      "home.edit.title.women": "The Naturals edit",
+      "home.hero.copy.men": "Precision cuts, beard-friendly grooming and restorative treatments in a deep, considered atelier. No noise \u2014 just a good chair and proper craft.",
+      "home.hero.copy.women": "Thoughtful hair, skin and bridal rituals in a light, unhurried setting \u2014 booked around your life, not the other way around.",
+      "home.hero.cta.men": "Book a grooming session",
+      "home.hero.cta.women": "Book an appointment",
+      "home.hero.eyebrow.men": "Naturals for men",
+      "home.hero.eyebrow.women": "Naturals for women",
+      "home.hero.image.men": "",
+      "home.hero.image.women": "",
+      "home.hero.secondary.men": "View disciplines",
+      "home.hero.secondary.women": "Explore treatments",
+      "home.hero.title.men": "Grooming,\nwith quiet confidence.",
+      "home.hero.title.women": "Salon care,\nin your own rhythm.",
+      "home.promise.subtitle.men": "A quieter kind of grooming appointment, with the details that matter left in plain sight.",
+      "home.promise.subtitle.women": "The details that make a salon visit feel considered, from the first question to the final finish.",
+      "home.promise.title.men": "Built around the chair",
+      "home.promise.title.women": "An easier kind of care",
+      "home.salons.subtitle.men": "Explore every Naturals studio with real opening hours, contact details and a sample team.",
+      "home.salons.subtitle.women": "Explore every Naturals studio, each with real opening hours, contact details and a sample team.",
+      "home.salons.title.men": "Find your atelier",
+      "home.salons.title.women": "Find your Naturals",
+      "home.team.subtitle.men": "A preview of the team. Pick your barber or stylist during booking, subject to the server's real availability.",
+      "home.team.subtitle.women": "A preview of the team. Choose your specialist in the booking flow \u2014 availability is checked by the salon server.",
+      "home.team.title.men": "The atelier team",
+      "home.team.title.women": "Your specialists",
+      "site.footer.description": "A calmer way to book salon care. One Naturals, two atmospheres \u2014 soft light for women, deep noir for men.",
+      "site.footer.tagline": "Care that feels like you."
+    }
+  },
+  "/public/campaigns": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "title": "Demo campaign",
+        "subtitle": "Captured snapshot",
+        "description": "A demo campaign for the offline layer.",
+        "image_id": 1,
+        "image_url": "/media/uploads/9c3527d02de55812.png",
+        "cta_label": "Explore",
+        "cta_url": null,
+        "audience": "Everyone",
+        "start_date": null,
+        "end_date": null,
+        "is_active": true,
+        "position": 1,
+        "created_by": 1,
+        "created_at": "2026-11-17T09:23:05.983495",
+        "updated_at": "2026-11-17T09:23:05.983509"
+      }
+    ]
+  },
+  "/salons/2/staff": {
+    "status": 200,
+    "body": [
+      {
+        "id": 4,
+        "name": "Demo stylist 1",
+        "title": "Stylist \u00b7 Demo profile",
+        "salon_id": 2
+      },
+      {
+        "id": 5,
+        "name": "Demo stylist 2",
+        "title": "Stylist \u00b7 Demo profile",
+        "salon_id": 2
+      },
+      {
+        "id": 6,
+        "name": "Demo stylist 3",
+        "title": "Stylist \u00b7 Demo profile",
+        "salon_id": 2
+      }
+    ]
+  },
+  "/availability": {
+    "status": 200,
+    "body": {
+      "date": "2026-11-19",
+      "service_duration_minutes": 60,
+      "slots": [
+        {
+          "time": "10:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "10:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "11:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "11:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "12:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "12:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "13:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "13:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "14:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "14:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "15:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "15:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "16:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "16:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "17:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "17:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "18:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "18:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "19:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "19:30",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        },
+        {
+          "time": "20:00",
+          "staff": [
+            {
+              "id": 4,
+              "name": "Demo stylist 1",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 5,
+              "name": "Demo stylist 2",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            },
+            {
+              "id": 6,
+              "name": "Demo stylist 3",
+              "title": "Stylist \u00b7 Demo profile",
+              "salon_id": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/reviews": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "salon_id": 2,
+        "service_id": 2,
+        "user_id": 3,
+        "rating": 5,
+        "title": "Loved it",
+        "comment": "Great service.",
+        "is_active": true,
+        "created_at": "2026-11-17T09:23:05.707443",
+        "customer_name": "Demo Customer"
+      }
+    ]
+  },
+  "/reviews/summary": {
+    "status": 200,
+    "body": {
+      "salon_id": 2,
+      "average_rating": 4.0,
+      "review_count": 1
+    }
+  },
+  "/bookings": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "reference": "NTL-4AF4279F",
+        "status": "confirmed",
+        "date": "2026-11-22",
+        "start_time": "10:00",
+        "end_time": "11:00",
+        "salon": {
+          "id": 2,
+          "name": "Naturals Demo Studio \u2014 Indiranagar",
+          "city": "Bengaluru",
+          "address": "Demo address \u2014 update before launch",
+          "phone": "+91 00000 00000",
+          "opens_at": "10:00",
+          "closes_at": "21:00",
+          "image_url": null,
+          "is_active": true,
+          "is_demo": true,
+          "average_rating": null,
+          "review_count": 0
+        },
+        "service": {
+          "id": 2,
+          "category_id": 1,
+          "category": "Hair",
+          "name": "Nourishing hair spa",
+          "description": "A relaxing wash and conditioning ritual for soft, refreshed hair.",
+          "duration_minutes": 60,
+          "price": "1499.00",
+          "image_url": null,
+          "audience": "Everyone",
+          "is_active": true,
+          "is_demo": true
+        },
+        "stylist": {
+          "id": 4,
+          "name": "Demo stylist 1",
+          "title": "Stylist \u00b7 Demo profile",
+          "salon_id": 2
+        },
+        "price": "1499.00",
+        "discount": "0.00",
+        "total": "1499.00",
+        "offer_code": null,
+        "customer_name": null,
+        "customer_email": null
+      }
+    ]
+  },
+  "/bookings/1": {
+    "status": 200,
+    "body": {
+      "id": 1,
+      "reference": "NTL-4AF4279F",
+      "status": "confirmed",
+      "date": "2026-11-22",
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "salon": {
+        "id": 2,
+        "name": "Naturals Demo Studio \u2014 Indiranagar",
+        "city": "Bengaluru",
+        "address": "Demo address \u2014 update before launch",
+        "phone": "+91 00000 00000",
+        "opens_at": "10:00",
+        "closes_at": "21:00",
+        "image_url": null,
+        "is_active": true,
+        "is_demo": true,
+        "average_rating": null,
+        "review_count": 0
+      },
+      "service": {
+        "id": 2,
+        "category_id": 1,
+        "category": "Hair",
+        "name": "Nourishing hair spa",
+        "description": "A relaxing wash and conditioning ritual for soft, refreshed hair.",
+        "duration_minutes": 60,
+        "price": "1499.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      "stylist": {
+        "id": 4,
+        "name": "Demo stylist 1",
+        "title": "Stylist \u00b7 Demo profile",
+        "salon_id": 2
+      },
+      "price": "1499.00",
+      "discount": "0.00",
+      "total": "1499.00",
+      "offer_code": null,
+      "customer_name": "Demo Customer",
+      "customer_email": "demo@naturals.example"
+    }
+  },
+  "/reviews/1": {
+    "status": 200,
+    "body": {
+      "id": 1,
+      "salon_id": 2,
+      "service_id": 2,
+      "user_id": 3,
+      "rating": 4,
+      "title": "Still good",
+      "comment": "Great service.",
+      "is_active": true,
+      "created_at": "2026-11-17T09:23:05.707443",
+      "customer_name": "Demo Customer"
+    }
+  },
+  "/admin/overview": {
+    "status": 200,
+    "body": {
+      "total_bookings": 1,
+      "today": 0,
+      "upcoming": 1,
+      "completed": 0,
+      "cancelled": 0,
+      "revenue": "0",
+      "revenue_rule": "Confirmed completed appointments only; demo prices are included."
+    }
+  },
+  "/admin/bookings": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "reference": "NTL-4AF4279F",
+        "status": "confirmed",
+        "date": "2026-11-22",
+        "start_time": "10:00",
+        "end_time": "11:00",
+        "salon": {
+          "id": 2,
+          "name": "Naturals Demo Studio \u2014 Indiranagar",
+          "city": "Bengaluru",
+          "address": "Demo address \u2014 update before launch",
+          "phone": "+91 00000 00000",
+          "opens_at": "10:00",
+          "closes_at": "21:00",
+          "image_url": null,
+          "is_active": true,
+          "is_demo": true,
+          "average_rating": null,
+          "review_count": 0
+        },
+        "service": {
+          "id": 2,
+          "category_id": 1,
+          "category": "Hair",
+          "name": "Nourishing hair spa",
+          "description": "A relaxing wash and conditioning ritual for soft, refreshed hair.",
+          "duration_minutes": 60,
+          "price": "1499.00",
+          "image_url": null,
+          "audience": "Everyone",
+          "is_active": true,
+          "is_demo": true
+        },
+        "stylist": {
+          "id": 4,
+          "name": "Demo stylist 1",
+          "title": "Stylist \u00b7 Demo profile",
+          "salon_id": 2
+        },
+        "price": "1499.00",
+        "discount": "0.00",
+        "total": "1499.00",
+        "offer_code": null,
+        "customer_name": "Demo Customer",
+        "customer_email": "demo@naturals.example"
+      }
+    ]
+  },
+  "/admin/analytics": {
+    "status": 200,
+    "body": {
+      "total_bookings": 1,
+      "today": 0,
+      "upcoming": 1,
+      "pending": 1,
+      "completed": 0,
+      "cancelled": 0,
+      "revenue": "0",
+      "range_total": 0,
+      "range_pending": 0,
+      "range_completed": 0,
+      "range_cancelled": 0,
+      "range_revenue": "0",
+      "range_start": "2026-10-19",
+      "range_end": "2026-11-17",
+      "trend": [
+        {
+          "date": "2026-10-19",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-20",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-21",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-22",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-23",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-24",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-25",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-26",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-27",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-28",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-29",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-30",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-10-31",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-01",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-02",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-03",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-04",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-05",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-06",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-07",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-08",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-09",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-10",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-11",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-12",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-13",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-14",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-15",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-16",
+          "bookings": 0,
+          "revenue": "0"
+        },
+        {
+          "date": "2026-11-17",
+          "bookings": 0,
+          "revenue": "0"
+        }
+      ],
+      "status_breakdown": [],
+      "branch_breakdown": []
+    }
+  },
+  "/admin/services": {
+    "status": 200,
+    "body": [
+      {
+        "id": 2,
+        "category_id": 1,
+        "category": "Hair",
+        "name": "Nourishing hair spa",
+        "description": "A relaxing wash and conditioning ritual for soft, refreshed hair.",
+        "duration_minutes": 60,
+        "price": "1499.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 1,
+        "category_id": 1,
+        "category": "Hair",
+        "name": "Signature haircut",
+        "description": "A consultation-led cut and finish tailored to your style.",
+        "duration_minutes": 45,
+        "price": "699.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 3,
+        "category_id": 2,
+        "category": "Skin",
+        "name": "Radiance facial",
+        "description": "A cleansing and hydrating facial experience.",
+        "duration_minutes": 60,
+        "price": "1299.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 4,
+        "category_id": 3,
+        "category": "Body",
+        "name": "Relaxing body massage",
+        "description": "A restorative massage designed to help you unwind.",
+        "duration_minutes": 60,
+        "price": "1999.00",
+        "image_url": null,
+        "audience": "Everyone",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 5,
+        "category_id": 4,
+        "category": "Bridal",
+        "name": "Bridal beauty consultation",
+        "description": "A one-to-one consultation to discuss your wedding-day look.",
+        "duration_minutes": 45,
+        "price": "0.00",
+        "image_url": null,
+        "audience": "Women",
+        "is_active": true,
+        "is_demo": true
+      },
+      {
+        "id": 6,
+        "category_id": 5,
+        "category": "Men's grooming",
+        "name": "Classic men's grooming",
+        "description": "A tailored haircut and grooming finish.",
+        "duration_minutes": 30,
+        "price": "499.00",
+        "image_url": null,
+        "audience": "Men",
+        "is_active": true,
+        "is_demo": true
+      }
+    ]
+  },
+  "/admin/salons": {
+    "status": 200,
+    "body": [
+      {
+        "id": 2,
+        "name": "Naturals Demo Studio \u2014 Indiranagar",
+        "city": "Bengaluru",
+        "address": "Demo address \u2014 update before launch",
+        "phone": "+91 00000 00000",
+        "opens_at": "10:00",
+        "closes_at": "21:00",
+        "image_url": null,
+        "is_active": true,
+        "is_demo": true,
+        "average_rating": null,
+        "review_count": 0
+      },
+      {
+        "id": 1,
+        "name": "Naturals Demo Studio \u2014 Adyar",
+        "city": "Chennai",
+        "address": "Demo address \u2014 update before launch",
+        "phone": "+91 00000 00000",
+        "opens_at": "10:00",
+        "closes_at": "21:00",
+        "image_url": null,
+        "is_active": true,
+        "is_demo": true,
+        "average_rating": null,
+        "review_count": 0
+      }
+    ]
+  },
+  "/admin/campaigns": {
+    "status": 201,
+    "body": {
+      "id": 1,
+      "title": "Demo campaign",
+      "subtitle": "Captured snapshot",
+      "description": "A demo campaign for the offline layer.",
+      "image_id": 1,
+      "image_url": "/media/uploads/9c3527d02de55812.png",
+      "cta_label": "Explore",
+      "cta_url": null,
+      "audience": "Everyone",
+      "start_date": null,
+      "end_date": null,
+      "is_active": true,
+      "position": 1,
+      "created_by": 1,
+      "created_at": "2026-11-17T09:23:05.983495",
+      "updated_at": "2026-11-17T09:23:05.983509"
+    }
+  },
+  "/admin/media": {
+    "status": 200,
+    "body": []
+  },
+  "/admin/content": {
+    "status": 200,
+    "body": [
+      {
+        "id": 28,
+        "key": "home.categories.subtitle.men",
+        "value": "Hair, beard-friendly grooming, skin and body \u2014 each with its own set of rituals.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158781"
+      },
+      {
+        "id": 10,
+        "key": "home.categories.subtitle.women",
+        "value": "Start with a category, then narrow the services to exactly what you need.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158738"
+      },
+      {
+        "id": 27,
+        "key": "home.categories.title.men",
+        "value": "Choose your discipline",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158779"
+      },
+      {
+        "id": 9,
+        "key": "home.categories.title.women",
+        "value": "Find your ritual",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158736"
+      },
+      {
+        "id": 36,
+        "key": "home.cta.copy.men",
+        "value": "Pick a discipline, choose a real open slot and let the team handle the rest.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158800"
+      },
+      {
+        "id": 18,
+        "key": "home.cta.copy.women",
+        "value": "Choose a service, pick a real available time and let the salon team take it from there.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158758"
+      },
+      {
+        "id": 35,
+        "key": "home.cta.title.men",
+        "value": "Take the chair.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158798"
+      },
+      {
+        "id": 17,
+        "key": "home.cta.title.women",
+        "value": "Your chair is waiting.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158755"
+      },
+      {
+        "id": 26,
+        "key": "home.edit.subtitle.men",
+        "value": "Signature disciplines chosen from the live service catalogue. Durations and prices are pulled from the salon API.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158777"
+      },
+      {
+        "id": 8,
+        "key": "home.edit.subtitle.women",
+        "value": "Signature rituals chosen from the live service catalogue. Every price and duration below comes from the salon API.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158734"
+      },
+      {
+        "id": 25,
+        "key": "home.edit.title.men",
+        "value": "The grooming edit",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158774"
+      },
+      {
+        "id": 7,
+        "key": "home.edit.title.women",
+        "value": "The Naturals edit",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158731"
+      },
+      {
+        "id": 21,
+        "key": "home.hero.copy.men",
+        "value": "Precision cuts, beard-friendly grooming and restorative treatments in a deep, considered atelier. No noise \u2014 just a good chair and proper craft.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158765"
+      },
+      {
+        "id": 3,
+        "key": "home.hero.copy.women",
+        "value": "Thoughtful hair, skin and bridal rituals in a light, unhurried setting \u2014 booked around your life, not the other way around.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158721"
+      },
+      {
+        "id": 22,
+        "key": "home.hero.cta.men",
+        "value": "Book a grooming session",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158767"
+      },
+      {
+        "id": 4,
+        "key": "home.hero.cta.women",
+        "value": "Book an appointment",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158724"
+      },
+      {
+        "id": 19,
+        "key": "home.hero.eyebrow.men",
+        "value": "Naturals for men",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158760"
+      },
+      {
+        "id": 1,
+        "key": "home.hero.eyebrow.women",
+        "value": "Naturals for women",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158706"
+      },
+      {
+        "id": 24,
+        "key": "home.hero.image.men",
+        "value": "",
+        "content_type": "image",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158772"
+      },
+      {
+        "id": 6,
+        "key": "home.hero.image.women",
+        "value": "",
+        "content_type": "image",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158729"
+      },
+      {
+        "id": 23,
+        "key": "home.hero.secondary.men",
+        "value": "View disciplines",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158770"
+      },
+      {
+        "id": 5,
+        "key": "home.hero.secondary.women",
+        "value": "Explore treatments",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158726"
+      },
+      {
+        "id": 20,
+        "key": "home.hero.title.men",
+        "value": "Grooming,\nwith quiet confidence.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158762"
+      },
+      {
+        "id": 2,
+        "key": "home.hero.title.women",
+        "value": "Salon care,\nin your own rhythm.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158718"
+      },
+      {
+        "id": 34,
+        "key": "home.promise.subtitle.men",
+        "value": "A quieter kind of grooming appointment, with the details that matter left in plain sight.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158796"
+      },
+      {
+        "id": 16,
+        "key": "home.promise.subtitle.women",
+        "value": "The details that make a salon visit feel considered, from the first question to the final finish.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158753"
+      },
+      {
+        "id": 33,
+        "key": "home.promise.title.men",
+        "value": "Built around the chair",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158793"
+      },
+      {
+        "id": 15,
+        "key": "home.promise.title.women",
+        "value": "An easier kind of care",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158751"
+      },
+      {
+        "id": 30,
+        "key": "home.salons.subtitle.men",
+        "value": "Explore every Naturals studio with real opening hours, contact details and a sample team.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158786"
+      },
+      {
+        "id": 12,
+        "key": "home.salons.subtitle.women",
+        "value": "Explore every Naturals studio, each with real opening hours, contact details and a sample team.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158743"
+      },
+      {
+        "id": 29,
+        "key": "home.salons.title.men",
+        "value": "Find your atelier",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158784"
+      },
+      {
+        "id": 11,
+        "key": "home.salons.title.women",
+        "value": "Find your Naturals",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158741"
+      },
+      {
+        "id": 32,
+        "key": "home.team.subtitle.men",
+        "value": "A preview of the team. Pick your barber or stylist during booking, subject to the server's real availability.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158791"
+      },
+      {
+        "id": 14,
+        "key": "home.team.subtitle.women",
+        "value": "A preview of the team. Choose your specialist in the booking flow \u2014 availability is checked by the salon server.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158748"
+      },
+      {
+        "id": 31,
+        "key": "home.team.title.men",
+        "value": "The atelier team",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158789"
+      },
+      {
+        "id": 13,
+        "key": "home.team.title.women",
+        "value": "Your specialists",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158746"
+      },
+      {
+        "id": 38,
+        "key": "site.footer.description",
+        "value": "A calmer way to book salon care. One Naturals, two atmospheres \u2014 soft light for women, deep noir for men.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158805"
+      },
+      {
+        "id": 37,
+        "key": "site.footer.tagline",
+        "value": "Care that feels like you.",
+        "content_type": "text",
+        "updated_by": null,
+        "updated_at": "2026-11-17T09:23:05.158803"
+      }
+    ]
+  },
+  "/admin/audit-logs": {
+    "status": 200,
+    "body": [
+      {
+        "id": 2,
+        "actor_id": 3,
+        "actor_name": "Demo Customer",
+        "actor_email": "demo@naturals.example",
+        "actor_role": "customer",
+        "action": "update",
+        "entity": "review",
+        "entity_id": "1",
+        "detail": null,
+        "created_at": "2026-11-17T09:23:05.739825"
+      },
+      {
+        "id": 1,
+        "actor_id": 3,
+        "actor_name": "Demo Customer",
+        "actor_email": "demo@naturals.example",
+        "actor_role": "customer",
+        "action": "create",
+        "entity": "review",
+        "entity_id": "1",
+        "detail": null,
+        "created_at": "2026-11-17T09:23:05.713351"
+      }
+    ]
+  },
+  "/admin/users": {
+    "status": 200,
+    "body": [
+      {
+        "id": 3,
+        "name": "Demo Customer",
+        "email": "demo@naturals.example",
+        "role": "customer",
+        "is_active": true,
+        "created_at": "2026-11-17T09:23:05.398641"
+      },
+      {
+        "id": 2,
+        "name": "Naturals Developer",
+        "email": "developer@naturals.example",
+        "role": "developer",
+        "is_active": true,
+        "created_at": "2026-11-17T09:23:05.132887"
+      },
+      {
+        "id": 1,
+        "name": "Naturals Admin",
+        "email": "admin@naturals.example",
+        "role": "admin",
+        "is_active": true,
+        "created_at": "2026-11-17T09:23:05.132875"
+      }
+    ]
+  },
+  "/admin/reviews": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "salon_id": 2,
+        "service_id": 2,
+        "user_id": 3,
+        "rating": 4,
+        "title": "Still good",
+        "comment": "Great service.",
+        "is_active": true,
+        "created_at": "2026-11-17T09:23:05.707443",
+        "customer_name": "Demo Customer"
+      }
+    ]
+  },
+  "/admin/settings": {
+    "status": 200,
+    "body": {
+      "settings": {
+        "promo_banner_enabled": "false",
+        "promo_banner_title": "Your next ritual, made special",
+        "promo_banner_message": "Browse treatments and find a time that works for you.",
+        "promo_banner_cta": "Explore offers"
+      }
+    }
+  },
+  "/developer/diagnostics": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "version": "1.0.0",
+      "started_at": "2026-11-17T09:23:04.643551",
+      "server_time": "2026-11-17T09:23:05.926540",
+      "uptime_seconds": 1,
+      "database_dialect": "sqlite",
+      "developer_mode": false,
+      "counts": {
+        "users": 3,
+        "admins": 1,
+        "developers": 1,
+        "bookings": 1,
+        "salons": 2,
+        "services": 6,
+        "campaigns": 0,
+        "media_files": 0,
+        "page_content": 38,
+        "audit_logs": 2
+      },
+      "uploads": {
+        "files": 6,
+        "bytes": 279562,
+        "directory": "/home/prasanna/Desktop/naturals-salon-mobile-app/backend/app/uploads"
+      },
+      "config": {
+        "cors_origins": "*",
+        "access_token_minutes": 1440,
+        "admin_seed_configured": true,
+        "developer_seed_configured": true
+      }
+    }
+  },
+  "/developer/mode": {
+    "status": 200,
+    "body": {
+      "enabled": false
+    }
+  },
+  "/admin/media/upload": {
+    "status": 200,
+    "body": {
+      "media": {
+        "id": 1,
+        "filename": "9c3527d02de55812.png",
+        "original_name": "demo.png",
+        "mime_type": "image/png",
+        "size": 26,
+        "url": "/media/uploads/9c3527d02de55812.png",
+        "category": "campaign",
+        "uploaded_by": 1,
+        "created_at": "2026-11-17T09:23:05.965017"
+      }
+    }
+  },
+  "/admin/reviews/1": {
+    "status": 200,
+    "body": {
+      "id": 1,
+      "salon_id": 2,
+      "service_id": 2,
+      "user_id": 3,
+      "rating": 4,
+      "title": "Still good",
+      "comment": "Great service.",
+      "is_active": true,
+      "created_at": "2026-11-17T09:23:05.707443",
+      "customer_name": "Demo Customer"
+    }
+  }
+}

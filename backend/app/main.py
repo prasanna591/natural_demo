@@ -23,7 +23,7 @@ from .rate_limit import RateLimitMiddleware
 from .schema import ensure_schema
 from .seed import seed_content, seed_data, seed_official_branch_prices, seed_official_services, seed_verified_branches
 from .startup import startup_lock
-from .timeutils import utc_now
+from .timeutils import local_now, utc_now
 
 
 UPLOAD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "uploads")
@@ -120,10 +120,16 @@ app = FastAPI(
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 app.add_middleware(RateLimitMiddleware)
 app.add_middleware(ObservabilityMiddleware)
+_dev_origins = "http://localhost:8000,http://127.0.0.1:8000,http://localhost:19006,http://127.0.0.1:19006"
+raw_origins = os.getenv("CORS_ORIGINS", _dev_origins)
+allow_credentials = _truthy(os.getenv("CORS_ALLOW_CREDENTIALS", "true"))
+origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
+if "*" in origins and allow_credentials and os.getenv("ENV") != "production":
+    raise RuntimeError("CORS wildcard origin is not allowed with credentials unless ENV=production.")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.getenv("CORS_ORIGINS", "*").split(","),
-    allow_credentials=True,
+    allow_origins=origins,
+    allow_credentials=allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -359,9 +365,9 @@ def _available_staff(
     closing = time.fromisoformat(salon.closes_at)
     if start_time < opening or ends_at.time() > closing:
         return []
-    if appointment_date < date.today() or (
-        appointment_date == date.today() and starts_at <= datetime.now()
-    ):
+    today = local_now().date()
+    now = local_now()
+    if appointment_date < today or (appointment_date == today and starts_at <= now):
         return []
     eligible = _eligible_staff(db, salon.id, service.id)
     busy = _conflicting_staff_ids(
@@ -686,11 +692,12 @@ def create_or_update_review(
         db.flush()
         db.add(AuditLog(actor_id=user.id, action="create", entity="review", entity_id=str(review.id)))
     else:
+        if not existing.is_active:
+            raise HTTPException(status_code=409, detail="Review is hidden and cannot be resubmitted.")
         existing.rating = payload.rating
         existing.title = payload.title
         existing.comment = payload.comment
         existing.service_id = payload.service_id
-        existing.is_active = True
         existing.updated_at = now
         review = existing
         db.add(AuditLog(actor_id=user.id, action="update", entity="review", entity_id=str(review.id)))
@@ -770,7 +777,7 @@ def admin_list_reviews(
 @app.patch("/admin/reviews/{review_id}", response_model=schemas.ReviewOut)
 def admin_update_review(
     review_id: int,
-    payload: schemas.ReviewUpdate,
+    payload: schemas.ReviewModerationUpdate,
     db: Session = Depends(get_db),
     admin: User = Depends(require_admin),
 ) -> schemas.ReviewOut:
@@ -822,7 +829,7 @@ def availability(
     _ensure_service_available_at_branch(db, service, salon.id)
     opening = time.fromisoformat(salon.opens_at)
     closing = time.fromisoformat(salon.closes_at)
-    if appointment_date < date.today():
+    if appointment_date < local_now().date():
         return schemas.AvailabilityOut(
             date=appointment_date, service_duration_minutes=service.duration_minutes, slots=[]
         )
@@ -845,7 +852,7 @@ def availability(
     cursor = datetime.combine(appointment_date, opening)
     closing_at = datetime.combine(appointment_date, closing)
     service_length = timedelta(minutes=service.duration_minutes)
-    now = datetime.now()
+    now = local_now()
     while cursor + service_length <= closing_at:
         slot_end = cursor + service_length
         if cursor > now:
@@ -991,7 +998,7 @@ def _get_owned_booking(db: Session, booking_id: int, user: User) -> Booking:
         raise HTTPException(status_code=404, detail="Booking not found.")
     if booking.status != "confirmed":
         raise HTTPException(status_code=409, detail="Only confirmed bookings can be changed.")
-    if booking.starts_at <= datetime.now():
+    if booking.starts_at <= local_now():
         raise HTTPException(status_code=409, detail="Past appointments can no longer be changed.")
     return booking
 
@@ -1213,10 +1220,10 @@ def admin_overview(
     db: Session = Depends(get_db),
     _: User = Depends(require_admin),
 ) -> dict:
-    today = date.today()
+    today = local_now().date()
     today_start = datetime.combine(today, time.min)
     tomorrow_start = today_start + timedelta(days=1)
-    now = datetime.now()
+    now = local_now()
     completed = Booking.status == "completed"
     row = db.execute(
         select(
@@ -1371,8 +1378,8 @@ def admin_analytics(
     db: Session = Depends(get_db),
     _: User = Depends(require_admin),
 ) -> schemas.AnalyticsOut:
-    today = date.today()
-    now = datetime.now()
+    today = local_now().date()
+    now = local_now()
     if range == "today":
         window_start = today
         window_end = today
@@ -1945,6 +1952,7 @@ def admin_upload_media(
         uploaded_by=admin.id,
     )
     db.add(media)
+    db.flush()
     db.add(AuditLog(actor_id=admin.id, action="upload", entity="media", entity_id=str(media.id)))
     db.commit()
     invalidate_public_cache()
@@ -2054,6 +2062,7 @@ def admin_create_campaign(
 ):
     campaign = Campaign(**payload.model_dump(), created_by=admin.id)
     db.add(campaign)
+    db.flush()
     db.add(AuditLog(actor_id=admin.id, action="create", entity="campaign", entity_id=str(campaign.id)))
     db.commit()
     invalidate_public_cache()
@@ -2104,7 +2113,7 @@ def public_campaigns(
     db: Session = Depends(get_db),
 ):
     def load() -> list[schemas.CampaignOut]:
-        today = date.today()
+        today = local_now().date()
         query = select(Campaign).where(
             Campaign.is_active.is_(True),
             or_(Campaign.start_date.is_(None), Campaign.start_date <= today),
