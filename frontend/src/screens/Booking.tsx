@@ -162,7 +162,7 @@ export function BookingScreen() {
             <Card style={{ padding: bp.isMobile ? (bookingStep === 1 ? 14 : 18) : 28 }}>
               {bookingStep === 0 ? (
                 <>
-                  <StepTitle index={1} eyebrow="Studio" title="Choose your salon" subtitle="Both studios are demo records, with real opening hours from the API." />
+                  <StepTitle index={1} eyebrow="Studio" title="Choose your salon" subtitle="Real Naturals branches, with opening hours from the API." />
                   <View style={{ marginTop: 18 }}>
                     {salons.map((salon, index) => (
                       <SalonSelectCard key={salon.id} salon={salon} index={index} selected={salonId === salon.id} onPress={() => setSalonId(salon.id)} />
@@ -181,7 +181,7 @@ export function BookingScreen() {
                             TEAM
                           </Body>
                           <Body size={10.5} color={t.muted}>
-                            {team.map((stylist) => stylist.name.split(" ").slice(-1)[0]).join(" · ")} (demo profiles)
+                            {team.map((stylist) => stylist.name.split(" ").slice(-1)[0]).join(" · ")} (sample team)
                           </Body>
                         </View>
                       ) : null}

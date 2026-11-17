@@ -499,10 +499,10 @@ export function HomeScreen() {
 
       <View style={{ marginTop: bp.isMobile ? 32 : 48, marginBottom: bp.isMobile ? 6 : 12 }}>
         <View style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 14 }}>
-          <Body size={10.5} color={t.muted} style={{ maxWidth: 560 }}>
-            Naturals is a demonstration project. Service descriptions, prices, salons, stylists and offers are sample data
-            and are not official Naturals information.
-          </Body>
+            <Body size={10.5} color={t.muted} style={{ maxWidth: 560 }}>
+              Branch names, addresses, PIN codes and phone numbers are from the official Naturals Tamil Nadu locator.
+              Service descriptions, prices, stylists and offers are sample data and are not official Naturals information.
+            </Body>
           <Body size={10.5} color={t.muted}>
             {text("site.footer.tagline", "Care that feels like you.")}
           </Body>
