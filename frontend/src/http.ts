@@ -38,7 +38,13 @@ export function request<T>(path: string, token: string | null, init: RequestInit
   if (DEMO_MODE) {
     const method = (init.method || "GET").toUpperCase();
     try {
-      return Promise.resolve(demoRequest(method, path, token, init) as unknown as T);
+      const result = demoRequest(method, path, token, init);
+      if (result.status >= 400) {
+        const detail = (result.body as { detail?: string })?.detail ?? `Request failed (${result.status}).`;
+        throw new ApiError(detail, result.status);
+      }
+      if (result.noContent) return Promise.resolve(undefined as unknown as T);
+      return Promise.resolve(result.body as unknown as T);
     } catch (error) {
       return Promise.reject(error);
     }
