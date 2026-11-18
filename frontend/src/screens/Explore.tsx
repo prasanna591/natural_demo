@@ -42,8 +42,12 @@ export function ExploreScreen() {
             </Body>
           </View>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-            <Badge label={`${sectionServices.length} ${section === "men" ? "disciplines" : "rituals"}`} tone="primary" />
-            <Button title="Book a visit" small onPress={() => app.startBooking()} icon="arrow-forward" />
+            <View style={{ minHeight: 28, alignSelf: "center" }}>
+              <Badge label={`${sectionServices.length} ${section === "men" ? "disciplines" : "rituals"}`} tone="primary" />
+            </View>
+            <View style={{ minHeight: 28, alignSelf: "center" }}>
+              <Button title="Book a visit" small onPress={() => app.startBooking()} icon="arrow-forward" />
+            </View>
           </View>
         </View>
 
@@ -81,40 +85,47 @@ export function ExploreScreen() {
             }}
           />
           {search ? (
-            <Pressable accessibilityRole="button" accessibilityLabel="Clear search" onPress={() => setSearch("")} style={{ minHeight: 32, justifyContent: "center" }}>
+            <Pressable accessibilityRole="button" accessibilityLabel="Clear search" onPress={() => setSearch("")} style={{ minHeight: 32, justifyContent: "center", alignSelf: "center" }}>
               <Ionicons name="close-circle" size={18} color={t.muted} />
             </Pressable>
           ) : (
-            <Badge label="live" tone="outline" />
+            <View style={{ minHeight: 28, alignSelf: "center" }}>
+              <Badge label="live" tone="outline" />
+            </View>
           )}
         </View>
 
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
-          <Chip label={`All (${counts.All ?? 0})`} selected={filter === "All"} onPress={() => setFilter("All")} icon="grid-outline" />
+          <View style={{ minHeight: 32 }}>
+            <Chip label={`All (${counts.All ?? 0})`} selected={filter === "All"} onPress={() => setFilter("All")} icon="grid-outline" />
+          </View>
           {sectionCategories.map((category) => (
-            <Chip
-              key={category.id}
-              label={`${category.name}${counts[category.name] ? ` (${counts[category.name]})` : ""}`}
-              selected={filter === category.name}
-              onPress={() => setFilter(category.name)}
-            />
+            <View key={category.id} style={{ minHeight: 32 }}>
+              <Chip
+                label={`${category.name}${counts[category.name] ? ` (${counts[category.name]})` : ""}`}
+                selected={filter === category.name}
+                onPress={() => setFilter(category.name)}
+              />
+            </View>
           ))}
         </View>
 
-        <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 10, marginBottom: 20 }}>
-          <Body size={11.5} color={t.muted}>
+        <View style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 10, marginBottom: 20 }}>
+          <Body size={11.5} color={t.muted} style={{ flexShrink: 1, minWidth: 0 }}>
             Showing <Body size={11.5} weight="700" color={t.ink}>{filteredServices.length}</Body> of {sectionServices.length} {section === "men" ? "disciplines" : "rituals"}
             {filter !== "All" ? ` in ${filter}` : ""}
             {search ? ` matching “${search.trim()}”` : ""}.
           </Body>
           {filtering ? (
-            <Pressable accessibilityRole="button" onPress={clear} style={{ minHeight: 32, justifyContent: "center" }}>
+            <Pressable accessibilityRole="button" onPress={clear} style={{ minHeight: 32, justifyContent: "center", flexShrink: 0 }}>
               <Body size={11} weight="700" color={t.primary}>
                 Clear filters
               </Body>
             </Pressable>
           ) : (
-            <DemoNote>Published prices and app-estimated durations from the live API.</DemoNote>
+            <DemoNote center>
+              Published prices and app-estimated durations from the live API.
+            </DemoNote>
           )}
         </View>
 

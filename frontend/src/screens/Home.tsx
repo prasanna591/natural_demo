@@ -235,10 +235,12 @@ export function HomeScreen() {
           }}
         >
           <Ionicons name="search-outline" size={17} color={t.muted} />
-          <Body size={12.5} color={t.muted} style={{ flex: 1 }}>
-            Search haircuts, facials, grooming and more
-          </Body>
-          <Badge label="explore" tone="primary" />
+  <Body size={12.5} color={t.muted} style={{ flex: 1 }}>
+    Search haircuts, facials, grooming and more
+  </Body>
+  <View style={{ alignItems: "center", justifyContent: "center", minHeight: 30 }}>
+    <Badge label="explore" tone="primary" />
+  </View>
         </Pressable>
       </View>
 

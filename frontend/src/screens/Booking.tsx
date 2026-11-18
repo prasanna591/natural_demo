@@ -52,6 +52,7 @@ export function BookingScreen() {
 
   const [serviceQuery, setServiceQuery] = useState("");
   const [serviceCategory, setServiceCategory] = useState("All");
+  const [salonQuery, setSalonQuery] = useState("");
   const original = bookings.find((booking) => booking.id === rescheduleId);
 
   const dates = useMemo(
@@ -84,6 +85,14 @@ export function BookingScreen() {
       return inCategory && inSearch;
     });
   }, [bookingServices, serviceQuery, serviceCategory]);
+
+  const filteredSalons = useMemo(() => {
+    const term = salonQuery.trim().toLowerCase();
+    return salons.filter((salon) => {
+      const inSearch = !term || `${salon.name} ${salon.city} ${salon.address}`.toLowerCase().includes(term);
+      return inSearch;
+    });
+  }, [salons, salonQuery]);
 
   const filtered = serviceQuery.trim().length > 0 || serviceCategory !== "All";
   const clearFilters = () => {
@@ -163,10 +172,58 @@ export function BookingScreen() {
               {bookingStep === 0 ? (
                 <>
                   <StepTitle index={1} eyebrow="Studio" title="Choose your salon" subtitle="Real Naturals branches, with opening hours from the API." />
-                  <View style={{ marginTop: 18 }}>
-                    {salons.map((salon, index) => (
+                  <View style={{ marginTop: 14, marginBottom: 10 }}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        gap: 9,
+                        borderWidth: 1,
+                        borderColor: t.border,
+                        backgroundColor: t.surfaceAlt,
+                        borderRadius: radius.md,
+                        paddingHorizontal: 13,
+                        minHeight: 44,
+                      }}
+                    >
+                      <Ionicons name="search-outline" size={16} color={t.muted} />
+                      <TextInput
+                        value={salonQuery}
+                        onChangeText={setSalonQuery}
+                        placeholder="Search salons…"
+                        placeholderTextColor={t.muted}
+                        style={{ flex: 1, fontFamily: fonts.body, fontSize: 12.5, color: t.ink, paddingVertical: 9 }}
+                      />
+                      {salonQuery ? (
+                        <Pressable accessibilityRole="button" accessibilityLabel="Clear salon search" onPress={() => setSalonQuery("")}>
+                          <Ionicons name="close-circle" size={17} color={t.muted} />
+                        </Pressable>
+                      ) : null}
+                    </View>
+                  </View>
+                  <View style={{ marginTop: 8 }}>
+                    {filteredSalons.slice(0, 5).map((salon, index) => (
                       <SalonSelectCard key={salon.id} salon={salon} index={index} selected={salonId === salon.id} onPress={() => setSalonId(salon.id)} />
                     ))}
+                    {filteredSalons.length > 5 && (
+                      <Pressable
+                        accessibilityRole="button"
+                        onPress={() => setSalonQuery("")}
+                        style={{ marginTop: 10, alignItems: "center" }}
+                      >
+                        <Body size={10.5} weight="700" color={t.primary}>
+                          View all {filteredSalons.length} salons
+                        </Body>
+                      </Pressable>
+                    )}
+                    {!filteredSalons.length ? (
+                      <View style={{ marginTop: 10, paddingVertical: 22, borderRadius: radius.lg, borderWidth: 1, borderColor: t.border, backgroundColor: t.surfaceAlt, alignItems: "center", gap: 9 }}>
+                        <Ionicons name="sparkles-outline" size={22} color={t.muted} />
+                        <Body size={11.5} color={t.muted} align="center">
+                          {salonQuery.trim() ? "No salons match your search." : "No salons available."}
+                        </Body>
+                      </View>
+                    ) : null}
                   </View>
                   {bookingSalon ? (
                     <View style={{ marginTop: 8, padding: 14, borderRadius: radius.md, backgroundColor: t.surfaceAlt, borderWidth: 1, borderColor: t.border }}>
@@ -382,11 +439,17 @@ export function BookingScreen() {
                     })}
                   </ScrollView>
 
-                  <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10, marginTop: 22, marginBottom: 10 }}>
-                    <Body size={10} weight="700" color={t.muted} style={{ letterSpacing: 1.3 }}>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginTop: 22, marginBottom: 10, flexWrap: "wrap" }}>
+                    <Body size={10} weight="700" color={t.muted} style={{ letterSpacing: 1.3, flex: 1, minWidth: 0 }}>
                       AVAILABLE TIMES · {longDate(bookingDate).toUpperCase()}
                     </Body>
-                    {slotsLoading ? <Spinner size={16} /> : <Badge label={`${slots.length} open`} tone={slots.length ? "success" : "muted"} />}
+                    {slotsLoading ? (
+                      <Spinner size={16} />
+                    ) : (
+                      <View style={{ flexShrink: 0 }}>
+                        <Badge label={`${slots.length} open`} tone={slots.length ? "success" : "muted"} />
+                      </View>
+                    )}
                   </View>
 
                   {slotsLoading ? (
@@ -458,62 +521,62 @@ export function BookingScreen() {
                     </View>
                   )}
 
-                  {selectedTime ? (
-                    <View style={{ marginTop: 22 }}>
-                      <Body size={10} weight="700" color={t.muted} style={{ letterSpacing: 1.3, marginBottom: 9 }}>
-                        SPECIALIST (OPTIONAL)
-                      </Body>
-                      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
-                        <Pressable
-                          accessibilityRole="button"
-                          accessibilityState={{ selected: staffId === null }}
-                          onPress={() => setStaffId(null)}
-                          style={{
-                            minHeight: 44,
-                            paddingHorizontal: 15,
-                            borderRadius: radius.md,
-                            borderWidth: 1,
-                            borderColor: staffId === null ? t.primary : t.border,
-                            backgroundColor: staffId === null ? t.primarySoft : t.surface,
-                          }}
-                        >
-                          <View style={{ flexDirection: "row", alignItems: "center", gap: 7 }}>
-                            <Ionicons name="people-outline" size={14} color={staffId === null ? t.primary : t.muted} />
-                            <Body size={11.5} weight="600" color={staffId === null ? t.primary : t.inkSoft}>
-                              Any available
-                            </Body>
-                          </View>
-                        </Pressable>
-                        {availableStaff.map((stylist) => {
-                          const active = staffId === stylist.id;
-                          return (
-                            <Pressable
-                              key={stylist.id}
-                              accessibilityRole="button"
-                              accessibilityState={{ selected: active }}
-                              onPress={() => setStaffId(stylist.id)}
-                              style={{
-                                minHeight: 44,
-                                paddingHorizontal: 14,
-                                paddingVertical: 8,
-                                borderRadius: radius.md,
-                                borderWidth: 1,
-                                borderColor: active ? t.primary : t.border,
-                                backgroundColor: active ? t.primarySoft : t.surface,
-                              }}
-                            >
-                              <Body size={11.5} weight="600" color={active ? t.primary : t.inkSoft}>
-                                {stylist.name}
+                    {selectedTime ? (
+                      <View style={{ marginTop: 22 }}>
+                        <Body size={10} weight="700" color={t.muted} style={{ letterSpacing: 1.3, marginBottom: 9, textAlign: "center" }}>
+                          SPECIALIST (OPTIONAL)
+                        </Body>
+                        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, justifyContent: "center" }}>
+                          <Pressable
+                            accessibilityRole="button"
+                            accessibilityState={{ selected: staffId === null }}
+                            onPress={() => setStaffId(null)}
+                            style={{
+                              minHeight: 44,
+                              paddingHorizontal: 15,
+                              borderRadius: radius.md,
+                              borderWidth: 1,
+                              borderColor: staffId === null ? t.primary : t.border,
+                              backgroundColor: staffId === null ? t.primarySoft : t.surface,
+                            }}
+                          >
+                            <View style={{ flexDirection: "row", alignItems: "center", gap: 7 }}>
+                              <Ionicons name="people-outline" size={14} color={staffId === null ? t.primary : t.muted} />
+                              <Body size={11.5} weight="600" color={staffId === null ? t.primary : t.inkSoft}>
+                                Any available
                               </Body>
-                              <Body size={8.5} color={t.muted}>
-                                {stylist.title}
-                              </Body>
-                            </Pressable>
-                          );
-                        })}
+                            </View>
+                          </Pressable>
+                          {availableStaff.map((stylist) => {
+                            const active = staffId === stylist.id;
+                            return (
+                              <Pressable
+                                key={stylist.id}
+                                accessibilityRole="button"
+                                accessibilityState={{ selected: active }}
+                                onPress={() => setStaffId(stylist.id)}
+                                style={{
+                                  minHeight: 44,
+                                  paddingHorizontal: 14,
+                                  paddingVertical: 8,
+                                  borderRadius: radius.md,
+                                  borderWidth: 1,
+                                  borderColor: active ? t.primary : t.border,
+                                  backgroundColor: active ? t.primarySoft : t.surface,
+                                }}
+                              >
+                                <Body size={11.5} weight="600" color={active ? t.primary : t.inkSoft}>
+                                  {stylist.name}
+                                </Body>
+                                <Body size={8.5} color={t.muted}>
+                                  {stylist.title}
+                                </Body>
+                              </Pressable>
+                            );
+                          })}
+                        </View>
                       </View>
-                    </View>
-                  ) : null}
+                    ) : null}
                 </>
               ) : null}
 
