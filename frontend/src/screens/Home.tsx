@@ -869,8 +869,8 @@ function PromoCarousel({
                 style={{ marginTop: 16 }}
               />
             </View>
-            <View style={{ position: "absolute", top: 15, right: 15, paddingHorizontal: 9, paddingVertical: 5, borderRadius: radius.pill, backgroundColor: section === "men" ? "rgba(13, 12, 18, 0.75)" : "rgba(36, 27, 45, 0.75)", borderWidth: 1, borderColor: section === "men" ? "rgba(201, 168, 106, 0.45)" : "rgba(91, 42, 131, 0.45)" }}>
-              <Body size={8.5} weight="700" color="#FFFFFF" style={{ letterSpacing: 0.7, textShadowColor: "#000000", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 2 }}>{section === "men" ? "MEN'S ATELIER" : "WOMEN'S SALON"}</Body>
+            <View style={{ position: "absolute", top: 15, right: 15, paddingHorizontal: 14, paddingVertical: 5, borderRadius: radius.pill, backgroundColor: section === "men" ? "rgba(13, 12, 18, 0.75)" : "rgba(36, 27, 45, 0.75)", borderWidth: 1, borderColor: section === "men" ? "rgba(201, 168, 106, 0.45)" : "rgba(91, 42, 131, 0.45)", minWidth: 110, justifyContent: "center", overflow: "hidden" }}>
+              <Body size={8} weight="700" color="#FFFFFF" numberOfLines={1} style={{ letterSpacing: 0.4, textShadowColor: "#000000", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 2 }}>{section === "men" ? "MEN'S ATELIER" : "WOMEN'S SALON"}</Body>
             </View>
           </View>
         ))}
