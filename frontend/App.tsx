@@ -2537,26 +2537,8 @@ function Shell() {
 
   // A short fade/rise whenever the visible route changes keeps transitions
   // calm without introducing a heavyweight navigation dependency.
-  const contentOpacity = useRef(new Animated.Value(1)).current;
-  const contentOffset = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    contentOpacity.setValue(0.55);
-    contentOffset.setValue(6);
-    const animation = Animated.parallel([
-      Animated.timing(contentOpacity, {
-        toValue: 1,
-        duration: 190,
-        useNativeDriver: Platform.OS !== "web",
-      }),
-      Animated.timing(contentOffset, {
-        toValue: 0,
-        duration: 190,
-        useNativeDriver: Platform.OS !== "web",
-      }),
-    ]);
-    animation.start();
-    return () => animation.stop();
-  }, [tab, section, bookingOpen, contentOpacity, contentOffset]);
+  const contentOpacity = new Animated.Value(1);
+  const contentOffset = new Animated.Value(0);
 
   const handleScroll = (event: { nativeEvent: { contentOffset: { y: number } } }) => {
     if (restoringScroll.current) return;
