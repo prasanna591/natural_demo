@@ -474,7 +474,6 @@ export function Header() {
 
   return (
     <>
-      {tab !== "Home" && tab !== "Explore" && <BranchSelector />}
       <View
         style={[
           {
@@ -569,6 +568,7 @@ export function Header() {
           </View>
         </View>
       </View>
+      {tab !== "Home" && tab !== "Explore" && <BranchSelector />}
     </>
   );
 }

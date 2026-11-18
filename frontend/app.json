@@ -72,6 +72,12 @@
       "backgroundColor": "#FAF7F3",
       "display": "standalone",
       "barStyle": "black-translucent"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bb00c4d9-18dd-4602-be1c-3fcb48e89284"
+      }
+    },
+    "owner": "prasanna591"
   }
 }
